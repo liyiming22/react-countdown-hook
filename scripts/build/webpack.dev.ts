@@ -2,6 +2,7 @@ import path from 'path'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import { merge } from 'webpack-merge'
 import { Configuration } from 'webpack'
+import 'webpack-dev-server'
 import commonConfig from './webpack.common'
 import { DEFAULT_PORT, HOST, PROJECT_ROOT } from '../constants'
 

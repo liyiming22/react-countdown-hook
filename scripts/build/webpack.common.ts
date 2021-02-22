@@ -109,7 +109,7 @@ const commonConfig: Configuration = {
   },
   plugins: [
     new WebpackBar({
-      name: 'Game',
+      name: 'Project',
       // react blue
       color: '#61dafb',
     }),
