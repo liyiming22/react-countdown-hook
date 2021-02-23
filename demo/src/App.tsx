@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader/root'
 import React from 'react'
-import useCountDown from './useCountDown'
+import useCountDown from '../../public'
 
 function App() {
   const [{ dd, hh, mm, ss }, start] = useCountDown(60 * 1000, false)

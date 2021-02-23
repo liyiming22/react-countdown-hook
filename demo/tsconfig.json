@@ -4,7 +4,7 @@
     /* Basic Options */
     "jsx": "react",
     "target": "ES2019",
-    "module": "esnext",
+    "module": "commonjs",
 
     /* Strict Type-Checking Options */
     "strict": true,
