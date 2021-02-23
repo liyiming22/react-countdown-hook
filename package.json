@@ -2,11 +2,23 @@
   "name": "use-countdown-hook",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "source": "src/index.ts",
+  "module": "dist/index.module.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "build": "microbundle",
+    "dev": "microbundle watch"
   },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/liyiming22/react-countdown-hook.git"
@@ -22,12 +34,13 @@
     "@babel/core": "^7.13.1",
     "@babel/preset-typescript": "^7.13.0",
     "@babel/runtime": "^7.13.2",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-typescript": "^8.2.0",
     "@types/react": "^17.0.2",
+    "core-js": "^3.9.0",
+    "microbundle": "^0.13.0",
     "react": "^17.0.1",
-    "rollup": "^2.39.1",
-    "tslib": "^2.1.0",
     "typescript": "^4.1.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
   }
 }

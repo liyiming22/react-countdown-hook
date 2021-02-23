@@ -7,3 +7,20 @@
     <img src="https://github.com/liyiming22/react-countdown-hook/workflows/Build/badge.svg" />
   </a>
 </p>
+
+## Usage
+```javascript
+const [{ dd, hh, mm, ss }, start] = useCountDown(60 * 1000, false)
+
+return (
+  <div className='app'>
+    <p>
+      <span>{ dd }Days</span>
+      <span>{ hh }Hours</span>
+      <span>{ mm }Minutes</span>
+      <span>{ ss }Seconds</span>
+    </p>
+    <button onClick={start}>Start</button>
+  </div>
+)
+```

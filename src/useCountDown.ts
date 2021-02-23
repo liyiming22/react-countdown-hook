@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-export const START_TIME = '00'
+const START_TIME = '00'
 
-export interface ITimerProps {
+interface ITimerProps {
   timeLeft: number
   requestRef?: ReturnType<typeof window.requestAnimationFrame>
   startedTime?: number
@@ -20,7 +20,7 @@ export type UseCountDown = (initialRemain: number, startImmediately?: boolean) =
 
 const formatTimeString = (n: number) => Math.floor(n).toString().padStart(2, '0')
 
-const useCountDown: UseCountDown = (initialTime, startImmediately = true) => {
+export const useCountDown: UseCountDown = (initialTime, startImmediately = true) => {
   const timer = useRef<ITimerProps>({ timeLeft: initialTime })
   const [timeRemain, setTimeRemain] = useState<ITimeRemain>({
     dd: START_TIME,
@@ -83,5 +83,3 @@ const useCountDown: UseCountDown = (initialTime, startImmediately = true) => {
 
   return [ timeRemain, start ]
 }
-
-export default useCountDown

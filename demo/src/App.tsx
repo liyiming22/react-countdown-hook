@@ -1,20 +1,15 @@
 import { hot } from 'react-hot-loader/root'
 import React from 'react'
-import useCountDown from '../../public'
+import useCountDown from 'use-countdown-hook'
 
 function App() {
-  const [{ dd, hh, mm, ss }, start] = useCountDown(60 * 1000, false)
+  const [{ ss }] = useCountDown(60 * 1000)
 
   return (
-    <div className='app'>
-      <p>
-        <span>{ dd }天</span>
-        <span>{ hh }小时</span>
-        <span>{ mm }分钟</span>
-        <span>{ ss }秒</span>
-      </p>
-      <button onClick={start}>Start</button>
-    </div>
+    <>
+      <h1>Demo</h1>
+      <p>{ ss }</p>
+    </>
   )
 }
 

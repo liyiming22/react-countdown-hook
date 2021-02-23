@@ -3,8 +3,8 @@
   "compilerOptions": {
     /* Basic Options */
     "jsx": "react",
-    "target": "ES2019",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
 
     /* Strict Type-Checking Options */
     "strict": true,
