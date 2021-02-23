@@ -6,6 +6,10 @@
   <a href="https://github.com/liyiming22/react-countdown-hook/actions">
     <img src="https://github.com/liyiming22/react-countdown-hook/workflows/Build/badge.svg" />
   </a>
+  <a href="https://www.npmjs.com/package/use-countdown-hook">
+    <img src="https://img.shields.io/npm/v/use-countdown-hook.svg" />
+  </a>
+</p>
 </p>
 
 ## Usage
