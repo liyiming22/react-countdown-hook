@@ -1,6 +1,6 @@
 <h1 align="center">React Countdown hook</h1>
 
-<p align="center">A simple React coutdown hook implemented by <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame</a></p>
+<p align="center">Dead simple React countdown hook implemented by <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame</a></p>
 
 <p align="center">
   <a href="https://github.com/liyiming22/react-countdown-hook/actions">
@@ -12,8 +12,18 @@
 </p>
 </p>
 
+## Install
+```bash
+yarn add use-countdown-hook
+```
+or
+```bash
+npm install use-countdown-hook
+```
 ## Usage
-```javascript
+```jsx
+import { useCountDown } from 'use-countdown-hook'
+
 const onTimeOver = useCallback(
   () => {
     console.log('time over...')

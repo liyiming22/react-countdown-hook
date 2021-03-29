@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-transform-react-constant-elements": "^7.12.1",
@@ -65,7 +65,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
-    "use-countdown-hook": "^1.0.2",
+    "use-countdown-hook": "^2.0.2",
     "webpack": "^5.13.0"
   },
   "browserslist": [
