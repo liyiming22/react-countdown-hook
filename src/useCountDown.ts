@@ -1,59 +1,63 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-const START_TIME = '00'
+import {
+  ICountDownConfig,
+  ITimerProps,
+  ITimeRemain,
+  ReturnValue
+} from './types'
 
-interface ITimerProps {
-  timeLeft: number
-  requestRef?: ReturnType<typeof window.requestAnimationFrame>
-  startedTime?: number
-  lastInterval?: number
-}
-
-export interface ITimeRemain {
-  dd: string
-  hh: string
-  mm: string
-  ss: string
-}
-
-export type UseCountDown = (initialRemain: number, startImmediately?: boolean) => [ITimeRemain, () => void]
+import {
+  SECOND_UNIT,
+  DAY_SECOND,
+  HOUR_SECOND,
+  MINUTE_SECOND
+} from './constants'
 
 const formatTimeString = (n: number) => Math.floor(n).toString().padStart(2, '0')
 
-export const useCountDown: UseCountDown = (initialTime, startImmediately = true) => {
-  const timer = useRef<ITimerProps>({ timeLeft: initialTime })
-  const [timeRemain, setTimeRemain] = useState<ITimeRemain>({
-    dd: START_TIME,
-    hh: START_TIME,
-    mm: START_TIME,
-    ss: START_TIME
-  })
+const formatSecond = (second: number): ITimeRemain => {
+  const days = second / DAY_SECOND
+  const hours = second % DAY_SECOND / HOUR_SECOND
+  const minutes = second % HOUR_SECOND / MINUTE_SECOND
+  const seconds = second % MINUTE_SECOND
+
+  const currTimeRemain = {
+    dd: Math.floor(days).toString(),
+    hh: formatTimeString(hours),
+    mm: formatTimeString(minutes),
+    ss: formatTimeString(seconds)
+  }
+
+  return currTimeRemain
+}
+
+export const useCountDown = (initialRemain = 0, {
+  startImmediately = true,
+  onTimeOver
+}: Partial<ICountDownConfig> = {}): ReturnValue => {
+
+  const timer = useRef<ITimerProps>({ timeLeft: initialRemain })
+
+  const [timeRemain, setTimeRemain] = useState<ITimeRemain>(() => formatSecond(initialRemain / SECOND_UNIT))
 
   const updateTime = useCallback((currTs: number) => {
-    const days = currTs / 1000 / 60 / 60 / 24
+    const currTimeRemain = formatSecond(currTs / SECOND_UNIT)
+    setTimeRemain(currTimeRemain)
+  }, [])
 
-    const hours = currTs / 1000 / 60 / 60 - (24 * Math.floor(days))
-
-    const minutes = currTs / 1000 / 60 - (24 * 60 * Math.floor(days)) - (60 * Math.floor(hours))
-
-    const seconds = currTs / 1000 - (24 * 60 * 60 * Math.floor(days)) - (60 * 60 * Math.floor(hours)) - (60 * Math.floor(minutes))
-
-    setTimeRemain({
-      dd: Math.floor(days).toString(),
-      hh: formatTimeString(hours),
-      mm: formatTimeString(minutes),
-      ss: formatTimeString(seconds)
-    })
-
+  const cancelRaf = useCallback(() => {
+    if ('number' === typeof timer.current.requestRef) {
+      window.cancelAnimationFrame(timer.current.requestRef)
+    }
   }, [])
 
   const run: FrameRequestCallback = ts => {
-    if (!timer.current.startedTime || !timer.current.lastInterval) {
-      timer.current.startedTime = ts
+    if (!timer.current.lastInterval) {
       timer.current.lastInterval = ts
     }
 
-    const currElapsed = Math.min(1000, timer.current.timeLeft)
+    const currElapsed = Math.min(SECOND_UNIT, timer.current.timeLeft)
     if (currElapsed <= ts - timer.current.lastInterval) {
       timer.current.lastInterval += currElapsed
       timer.current.timeLeft -= currElapsed
@@ -63,15 +67,18 @@ export const useCountDown: UseCountDown = (initialTime, startImmediately = true)
     if (0 < timer.current.timeLeft) {
       timer.current.requestRef = window.requestAnimationFrame(run)
     } else {
+      onTimeOver && onTimeOver()
       timer.current = { timeLeft: 0 }
     }
   }
 
-  const start = useCallback(() => {
-    if ('number' === typeof timer.current.requestRef) {
-      window.cancelAnimationFrame(timer.current.requestRef)
-    }
+  const pause = useCallback(() => {
+    cancelRaf()
+    timer.current.lastInterval = undefined
+  }, [])
 
+  const start = useCallback(() => {
+    cancelRaf()
     timer.current.requestRef = window.requestAnimationFrame(run)
   }, [])
 
@@ -81,5 +88,5 @@ export const useCountDown: UseCountDown = (initialTime, startImmediately = true)
     }
   }, [])
 
-  return [ timeRemain, start ]
+  return [ timeRemain, { start, pause } ]
 }

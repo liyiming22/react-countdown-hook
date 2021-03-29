@@ -14,17 +14,27 @@
 
 ## Usage
 ```javascript
-const [{ dd, hh, mm, ss }, start] = useCountDown(60 * 1000, false)
+const onTimeOver = useCallback(
+  () => {
+    console.log('time over...')
+  },
+[])
+
+const [{ dd, hh, mm, ss }, { start, pause }] = useCountDown(60 * 1000, {
+  startImmediately: false,
+  onTimeOver
+})
 
 return (
-  <div className='app'>
+  <>
     <p>
       <span>{ dd }Days</span>
       <span>{ hh }Hours</span>
       <span>{ mm }Minutes</span>
       <span>{ ss }Seconds</span>
     </p>
-    <button onClick={start}>Start</button>
-  </div>
+    <button onClick={ start }>Start</button>
+    <button onClick={ pause }>Pause</button>
+  </>
 )
 ```
