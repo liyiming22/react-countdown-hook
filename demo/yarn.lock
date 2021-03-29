@@ -6010,10 +6010,10 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-use-countdown-hook@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/use-countdown-hook/-/use-countdown-hook-2.0.1.tgz#c28dae8c91a0a29089dca3620dd555f74cba2913"
-  integrity sha512-XhevVjHG6+/eonL8PuZJWWjQGGYsdvoHa774QObJB/g0JRTTO9rOwkpMSD6YySM8Oo+uwEvPFwiWXiFxKQTV+w==
+use-countdown-hook@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/use-countdown-hook/-/use-countdown-hook-2.0.2.tgz#de356ce22cbf827a378ba483ea9aef235028701c"
+  integrity sha512-teCDJv6yRDYxLN8ocbwmGjg/3QZdzXzdSF5lRs+W9afnsU781YWPDAZ/4C73e8u7ghAq2vosiQ7joV8frA/ngA==
 
 use@^3.1.0:
   version "3.1.1"
