@@ -1,6 +1,6 @@
 <h1 align="center">React Countdown hook</h1>
 
-<p align="center">Dead simple React countdown hook which will return the remain time in the dd:hh:mm:ss format implemented by <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame</a></p>
+<p align="center">使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame</a> 实现的倒计时 hook，以 dd:hh:mm:ss 的形式返回剩余时间</p>
 
 <p align="center">
   <a href="https://github.com/liyiming22/react-countdown-hook/actions">
@@ -24,16 +24,18 @@
 </p>
 </p>
 
-[简体中文](README.zh_CN.md) | English
-## Install
+简体中文 | [English](README.md)
+
+## 安装
 ```bash
 yarn add use-countdown-hook
 ```
-or
+或者使用 npm
 ```bash
 npm install use-countdown-hook
 ```
-## Usage
+
+## 使用
 ```jsx
 import { useCountDown } from 'use-countdown-hook'
 
