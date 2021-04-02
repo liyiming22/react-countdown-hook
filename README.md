@@ -9,6 +9,15 @@
   <a href="https://www.npmjs.com/package/use-countdown-hook">
     <img src="https://img.shields.io/npm/v/use-countdown-hook.svg" />
   </a>
+  <a href="https://github.com/liyiming22/react-countdown-hook/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" />
+  </a>
+  <a href="https://app.codecov.io/gh/liyiming22/react-countdown-hook">
+    <img src="https://codecov.io/gh/liyiming22/react-countdown-hook/branch/master/graph/badge.svg" />
+  </a>
+  <a href="https://www.npmjs.com/package/use-countdown-hook">
+    <img src="https://img.shields.io/npm/dm/use-countdown-hook.svg" alt="npm downloads" />
+  </a>
 </p>
 </p>
 

@@ -34,12 +34,16 @@ const formatSecond = (second: number): ITimeRemain => {
 
 export const useCountDown = (initialRemain = 0, {
   startImmediately = true,
-  onTimeOver
+  onTimeOver = () => {}
 }: Partial<ICountDownConfig> = {}): ReturnValue => {
 
   const timer = useRef<ITimerProps>({ timeLeft: initialRemain })
 
   const [timeRemain, setTimeRemain] = useState<ITimeRemain>(() => formatSecond(initialRemain / SECOND_UNIT))
+
+  // use ref so we can get the precise callback
+  const onTimeOverCallback = useRef(onTimeOver)
+  onTimeOverCallback.current = onTimeOver
 
   const updateTime = useCallback((currTs: number) => {
     const currTimeRemain = formatSecond(currTs / SECOND_UNIT)
@@ -67,7 +71,7 @@ export const useCountDown = (initialRemain = 0, {
     if (0 < timer.current.timeLeft) {
       timer.current.requestRef = window.requestAnimationFrame(run)
     } else {
-      onTimeOver && onTimeOver()
+      onTimeOverCallback.current()
       timer.current = { timeLeft: 0 }
     }
   }
@@ -86,6 +90,8 @@ export const useCountDown = (initialRemain = 0, {
     if (startImmediately) {
       start()
     }
+    // bear in mind that clear the instance when unmount
+    return () => cancelRaf()
   }, [])
 
   return [ timeRemain, { start, pause } ]

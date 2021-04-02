@@ -8,7 +8,8 @@
   "source": "src/index.ts",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rimraf ./dist && rollup -c"
+    "build": "rimraf ./dist && rollup -c",
+    "test": "jest"
   },
   "browserslist": [
     "last 2 versions",
@@ -28,10 +29,17 @@
   },
   "homepage": "https://github.com/liyiming22/react-countdown-hook#readme",
   "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-typescript": "^7.13.0",
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
+    "@testing-library/react-hooks": "^5.1.1",
     "@types/react": "^17.0.2",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
     "react": "^17.0.1",
+    "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.43.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",

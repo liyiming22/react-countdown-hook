@@ -1,29 +1,40 @@
 import { hot } from 'react-hot-loader/root'
-import React, { useCallback } from 'react'
+import React, { useState } from 'react'
 import { useCountDown } from 'use-countdown-hook'
 
-function App() {
-  const onTimeOver = useCallback(
-    () => {
-      console.log('time over...')
-    },
-  [])
+function Timer() {
+  const [cnt, setCnt] = useState(0)
+  const onTimeOver = () => {
+    console.log(cnt)
+  }
   
-  const [{ dd, hh, mm, ss }, { start, pause }] = useCountDown(60 * 1000, {
+  const [{ dd, hh, mm, ss }, { start, pause }] = useCountDown(10 * 1000, {
     startImmediately: false,
     onTimeOver
   })
   
   return (
     <>
-      <p>
-        <span>{ dd }Days</span>
-        <span>{ hh }Hours</span>
-        <span>{ mm }Minutes</span>
-        <span>{ ss }Seconds</span>
-      </p>
+      <p>{ dd } Days</p>
+      <p>{ hh } Hours</p>
+      <p>{ mm } Minutes</p>
+      <p>{ ss } Seconds</p>
       <button onClick={ start }>Start</button>
       <button onClick={ pause }>Pause</button>
+      <button onClick={ () => setCnt(cnt => cnt + 1) }>add</button>
+    </>
+  )
+}
+
+function App() {
+  const [show, setShow] = useState(true)
+  return (
+    <>
+      <h1>App</h1>
+      {
+        show && <Timer />
+      }
+      <button onClick={() => setShow(show => !show)}>toggle</button>
     </>
   )
 }

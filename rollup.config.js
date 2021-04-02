@@ -4,7 +4,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import peerDepsExternal from "rollup-plugin-peer-deps-external"
 import pkgJson from "./package.json"
 
-const extensions = ['.ts', '.tsx']
+const extensions = ['.ts']
 
 export default {
   input: 'src/index.ts',
