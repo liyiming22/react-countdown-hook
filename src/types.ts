@@ -1,6 +1,6 @@
 export interface ICountDownConfig {
-  startImmediately?: Boolean
-  onTimeOver?: () => void
+  startImmediately: Boolean
+  onTimeOver: () => void
 }
 
 export interface ITimerProps {
